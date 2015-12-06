@@ -19,3 +19,9 @@ Other projects I used for this:
  * Very simply this makes your code be a smaller size, so people can download and run your webpage faster.
 * **Both**
  * This would be very useful to make smaller XML files
+
+# License
+
+[**The MIT License (MIT)**](https://github.com/jaketr00/escape-minify/blob/visual/LICENSE.md)
+
+Feel free to use and edit this page howerver you want, just give back credit.
