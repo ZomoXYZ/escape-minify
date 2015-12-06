@@ -10,11 +10,11 @@
         <a><div class="convert"><span class="largerText">Convert<br><span class="smallerText">Or press <span class="keyboard" id="cmd1lowercase"></span></span></span></div></a>
         <div class="keyboardbutton" title="Keyboard Shortcuts"><i class="fa fa-keyboard-o fa-2x"></i></div>
         <textarea class="intextcode" readonly></textarea>
-        <div class="intextcodeidentify">Char Codes</div>
+        <div class="intextcodeidentify">Escaped</div>
         <textarea class="intextmin" readonly></textarea>
         <div class="intextminidentify">Minified</div>
         <textarea class="intextcodemin" readonly></textarea>
-        <div class="intextcodeminidentify">Char Codes + Minified</div>
+        <div class="intextcodeminidentify">Escaped + Minified</div>
         <div class="fortextoverlaybottom"></div>
         <div class="intextcodeoverlaybottom"></div>
         <div class="intextminoverlaybottom"></div>
@@ -231,8 +231,6 @@
             });
         };
 
-        // all HTML4 entities as defined here: http://www.w3.org/TR/html4/sgml/entities.html
-        // added: amp, lt, gt, quot and apos
         escapeHtmlEntities.entityTable = {
             34 : 'quot', 
             38 : 'amp', 
@@ -571,15 +569,15 @@
                 if (textsize > widthFix - 15) {
                     fontsize--;
                     $('.convert').css('font-size', fontsize);
-                    $('textarea').css('font-size', fontsize / 4);
+                    $('textarea').css('font-size', fontsize / 8);
                     $('.smallerText, .intextcodeidentify, .intextminidentify, .intextcodeminidentify').css('font-size', fontsize / 6)
                 }else if (textsize < widthFix - 25) {
                     fontsize++;
                     $('.convert').css('font-size', fontsize);
-                    $('textarea').css('font-size', fontsize / 4);
+                    $('textarea').css('font-size', fontsize / 8);
                     $('.smallerText, .intextcodeidentify, .intextminidentify, .intextcodeminidentify').css('font-size', fontsize / 6)
                 }else {
-                    $('textarea').css('font-size', fontsize / 4);
+                    $('textarea').css('font-size', fontsize / 8);
                     $('.smallerText, .intextcodeidentify, .intextminidentify, .intextcodeminidentify').css('font-size', fontsize / 6)
                 }
                 
@@ -588,16 +586,11 @@
             function trimmedHtml(element){
   var html1 = $(element).text();
 
-  // find shortest html element indent
   var shortestIndent;
-  //html = html1.split('\n');
   html = element.split('\t');
   for(var i = 0; i < html.length; i++){
-    // for each line
     var line = html[i];
-    // ignore comment lines in searching
     if( $.trim(line).substring(0, 4) != "<!--" ){
-      // count number of spaces before code for current line
       var spaces = line.search(/\S/);
       if( (shortestIndent > spaces || shortestIndent == undefined) && spaces >= 0 ){
         shortestIndent = spaces;
@@ -605,25 +598,18 @@
     }
   }
 
-  // remove spaces before each line (align to shortest indent)
   for(var i = 0; i < html.length; i++){
-    // for each line
     var line = html[i];
     if( $.trim(line).substring(0, 4) != "<!--" ){
-      // if line is not a comment, remove spaces
       html[i] = line.substring(shortestIndent, line.length);
     } else {
-      // if line is a comment:
-      // remove it's spaces
       html[i] = $.trim(line);
-      // align to shortest line, and add 2 spaces
       for (space = 0; space < 2; space++) {
         html[i] = " " + html[i];
       }
     }
   }
 
-  // join all lines
   html = html.join("\n");
   return html;
 }
@@ -635,12 +621,10 @@
     var start = $(this).get(0).selectionStart;
     var end = $(this).get(0).selectionEnd;
 
-    // set textarea value to: text before caret + tab + text after caret
     $(this).val($(this).val().substring(0, start)
                 + "\    "
                 + $(this).val().substring(end));
 
-    // put caret at right position again
     $(this).get(0).selectionStart =
     $(this).get(0).selectionEnd = start + 4;
   }
