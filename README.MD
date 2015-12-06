@@ -6,7 +6,7 @@ This is a small webpage that simply allows you to enter your code in on one side
 
 * **Escape**
  * Escaping your code allows you to write characters onto your webpage you normally couldn't.
-   * i.e. `<`
+   * i.e. `>`
 * **Minify**
  * Very simply this makes your code be a smaller size, so people can download and run your webpage faster.
 * **Both**
