@@ -2,6 +2,14 @@
 
 This is a small webpage that simply allows you to enter your code in on one side, and on the other side will return your code escaped, minified, and both.
 
+## Used files.
+
+Other projects I used for this:
+
+* [JQuery](https://jquery.com/)
+* [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+* [KeyMaster](https://github.com/madrobby/keymaster)
+
 ## What could this be used for?
 
 * **Escape**
